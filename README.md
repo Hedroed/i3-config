@@ -1,5 +1,8 @@
 # My config
 
+Neofetch
+
+```
 OS: Manjaro Linux x86_64 
 Host: HP EliteBook 850 G3 
 Kernel: 4.19.85-1-MANJARO 
@@ -15,6 +18,7 @@ Terminal Font: Noto Sans Mono 9
 CPU: Intel i7-6600U (4) @ 3.400GHz 
 GPU: Intel Skylake GT2 [HD Graphics 520] 
 Memory: 1581MiB / 15921MiB 
+```
 
 ## WM
 
@@ -71,6 +75,7 @@ i3-gaps + [Nord color theme](https://www.nordtheme.com/)
 
 ### vs-code extensions
 
+```
 alexcvzz.vscode-sqlite
 anseki.vscode-color
 arcticicestudio.nord-visual-studio-code
@@ -95,4 +100,4 @@ scala-lang.scala
 streetsidesoftware.code-spell-checker
 streetsidesoftware.code-spell-checker-french
 vscode-icons-team.vscode-icons
-
+```
