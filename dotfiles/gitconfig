@@ -1,0 +1,9 @@
+[user]
+	email = perso@johndoe.tech
+	name = John Doe
+
+[includeIf "gitdir:~/work/"]
+    path = ~/.gitconfig-work
+
+[core]
+	quotepath = false

@@ -1,0 +1,7 @@
+[user]
+    email = contact@johndoe.tech
+    name = John Doe
+
+[http "https://github.com"]
+   proxy = http://proxy:8080/
+

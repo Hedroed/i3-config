@@ -1,0 +1,67 @@
+general {
+        output_format = "i3bar"
+        markup = pango
+        interval = 1
+        colors = false
+        color_good = "#BF616A"
+        color_bad = "#88C0D0"
+        color_degraded = "#5E81AC"
+}
+
+order += "cpu_temperature 0"
+order += "load"
+order += "disk /"
+order += "wireless _first_"
+order += "ethernet _first_"
+order += "volume master"
+order += "battery all"
+order += "tztime local"
+
+cpu_temperature 0 {
+        format = "<span background='#bf616a'>  </span><span background='#e5e9f0'> %degrees °C </span>"
+        path = "/sys/class/thermal/thermal_zone0/temp"
+}
+
+load {
+        format = "<span background='#d08770'>  </span><span background='#e5e9f0'> %5min Load </span>"
+}
+
+disk "/" {
+        format = "<span background='#ebcb8b'>  </span><span background='#e5e9f0'> %free Free </span>"
+}
+
+ethernet _first_ {
+        format_up = "<span background='#b48ead'>  </span><span background='#e5e9f0'> %ip </span>"
+        format_down = "<span background='#b48ead'>  </span><span background='#e5e9f0'> Disconnected </span>"
+}
+
+wireless _first_ {
+        format_up = "<span background='#b48ead'>  </span><span background='#e5e9f0'> %ip </span>"
+        format_down = "<span background='#b48ead'>  </span><span background='#e5e9f0'> Disconnected </span>"
+}
+
+battery all {
+        format = "<span background='#a3be8c'> %status </span><span background='#e5e9f0'> %percentage Bat </span>"
+        format_down = "<span background='#a3be8c'></span><span background='#e5e9f0'> No battery </span>"
+        last_full_capacity = true
+        integer_battery_capacity = true
+        status_chr = ""
+        status_bat = "" # discharging
+        status_unk = ""
+        status_full = ""
+        low_threshold = 15
+        threshold_type = time
+}
+
+volume master {
+        format = "<span background='#ff79c6'>  </span><span background='#e5e9f0'> %volume </span>"
+        format_muted = "<span background='#ff79c6'>  </span><span background='#e5e9f0'> Muted </span>"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+}
+
+tztime local {
+		format = "<span background='#88c0d0'>  </span><span background='#e5e9f0'> %time </span>"
+		format_time = "%a %-d %b %H:%M"
+}

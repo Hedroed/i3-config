@@ -1,0 +1,49 @@
+#!/bin/sh
+
+FORK_OPT="--nofork"
+if [ "$1" == "--fork" ]; then
+    FORK_OPT=""
+fi
+
+B='#00000000'  # center background
+C='#ffffff22'  # center background verif
+T='#5E81ACff'  # center text
+D='#88C0D0ff'  # default ring
+I='#5E81ACff'  # indicator
+W='#EBCB8Bff'  # wrong ring + indicator
+V='#88C0D0ff'  # verif ring
+
+notify-send "DUNST_COMMAND_PAUSE"
+
+i3lock $FORK_OPT \
+-c 2E3440 \
+--insidevercolor=$C   \
+--ringvercolor=$V     \
+\
+--insidewrongcolor=$C \
+--ringwrongcolor=$W   \
+\
+--ringcolor=$D        \
+--linecolor=$T        \
+--separatorcolor=$D   \
+\
+--insidecolor=$B      \
+--verifcolor=$T        \
+--wrongcolor=$T        \
+--timecolor=$T        \
+--datecolor=$T        \
+--layoutcolor=$T      \
+--keyhlcolor=$I       \
+--bshlcolor=$I        \
+\
+--clock               \
+--indicator           \
+--timestr="%H:%M"  \
+--datestr="%A %d %b"
+
+notify-send "DUNST_COMMAND_RESUME"
+
+# sleep 1 adds a small delay to prevent possible race conditions with suspend
+sleep 1
+
+exit 0

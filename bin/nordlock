@@ -1,0 +1,38 @@
+#!/bin/sh
+
+FORK_OPT="--nofork"
+if [ "$1" == "--fork" ]; then
+    FORK_OPT=""
+fi
+
+image="~/Images/Wallpapers/yuriy-rzhemovskiy-xYFYjUfXvz8-unsplash.jpg"
+
+if [ ! -f "$HOME/tmp/i3lock.jpg" ]; then
+    size=$(xdpyinfo | grep dimensions | cut -d\  -f7)
+    echo "Resize $size"
+    convert "$image" -resize "$size^" "$HOME/tmp/i3lock.jpg"
+fi
+
+notify-send "DUNST_COMMAND_PAUSE"
+
+i3lock $FORK_OPT \
+    -i "$HOME/tmp/i3lock.jpg" -t -c "2e3440" \
+    --insidecolor='#2e3440ff' --ringcolor='#eceff4ff' --line-uses-inside \
+    --keyhlcolor='#5e81acff' --bshlcolor='#5e81acff' --separatorcolor=00000000 \
+    --insidevercolor='#8fbcbbff' --insidewrongcolor='#ebcb8bff' \
+    --ringvercolor='#eceff4ff' --ringwrongcolor='#eceff4ff' \
+    --indpos="x+50+r:y+(h-50-r)" --radius=16 \
+    --veriftext="" --wrongtext="" --noinputtext="" \
+    --locktext="" --lockfailedtext="" --modifpos="x-100:y-100" \
+    --indicator --clock --force-clock \
+    --timecolor='#d8dee9ff' --datecolor='#eceff4ff' \
+    --timestr="%H:%M" --datestr="%A %d %b" \
+    --timepos="x+(w-50):y+(h-80)" --datepos="tx:ty+30" \
+    --time-align=2 --date-align=2
+
+notify-send "DUNST_COMMAND_RESUME"
+
+# sleep 1 adds a small delay to prevent possible race conditions with suspend
+sleep 1
+
+exit 0
