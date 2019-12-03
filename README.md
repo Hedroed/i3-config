@@ -13,8 +13,8 @@ Resolution: 1366x768
 WM: i3 
 Theme: Nordic [GTK2/3] 
 Icons: Nordic [GTK2/3] 
-Terminal: termite 
-Terminal Font: Noto Sans Mono 9 
+Terminal: kitty 
+Terminal Font: Noto Sans Mono 10 
 CPU: Intel i7-6600U (4) @ 3.400GHz 
 GPU: Intel Skylake GT2 [HD Graphics 520] 
 Memory: 1581MiB / 15921MiB 
@@ -22,9 +22,20 @@ Memory: 1581MiB / 15921MiB
 
 ## WM
 
-i3-gaps + [Nord color theme](https://www.nordtheme.com/)
+i3-gaps
+[Nord color theme](https://www.nordtheme.com/)
 
-## Desktop Enviroment
+## GTK
+
+Theme: Nordic [GTK2/3] 
+[github](https://github.com/EliverLara/Nordic)
+
+Icons: Nordic [GTK2/3]
+
+
+## Packages
+
+### Desktop Enviroment
 
 - i3-gaps
 - i3lock-color
@@ -40,38 +51,44 @@ i3-gaps + [Nord color theme](https://www.nordtheme.com/)
 - volumeicon
 - nm-applet
 - xfce4-power-manager
-- pamac-tray
 
-## Fonts
+### Applications
 
-- FiraCode
-- Noto
-
-## Applications
-
-- termite
-- vs-code
-- firefox
+- vs-code : [Theme Nord](https://github.com/arcticicestudio/nord-visual-studio-code)
+- firefox : [Theme Nord](https://addons.mozilla.org/en-US/firefox/addon/nord-theme/)
 - pcmanfs
 - wireshark
-- lxappearance
-- marktext
-- qt5ct
+- lxappearance : Theme Nord
+- marktext : Theme One dark
+- qt5ct : Theme GTK
+- mailspring : [Theme Nord Dark](https://github.com/ricci/Mailspring-Theme-nord-dark)
 
-## Shell
-
-- zsh
-- oh-my-zsh : theme hedroed-bureau
-- xonsh
-
-## Services
+### Services
 
 - NetworkManager
 - ntpd
 - ufw
 - cups
 
-## App config
+## Fonts
+
+- FiraCode
+- Fira Sans
+- Noto Sans
+
+## Terminal emulator
+
+- kitty
+- termite
+
+## Shell
+
+- zsh
+    + oh-my-zsh : theme hedroed-bureau
+- xonsh
+
+
+## Other
 
 ### vs-code extensions
 
