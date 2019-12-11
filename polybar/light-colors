@@ -1,0 +1,24 @@
+; vim:ft=dosini
+
+[colors]
+background = #D8DEE9
+buffer = #3B4252
+foreground = #2E3440
+nord6 = #ECEFF4
+;Frost
+nord7 = #8FBCBB
+nord8 = #88C0D0
+nord9 = #81A1C1
+nord10 = #5e81ac
+;WTF
+urgent = #BF616A
+warning = #D08770
+notify = #EBCB8B
+success = #A3BE8C
+function = #B48EAD
+;Aurora
+nord11 = #bf616a
+nord12 = #d08770
+nord13 = #ebcb8b
+nord14 = #a3be8c
+nord15 = #b48ead

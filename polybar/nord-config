@@ -1,0 +1,91 @@
+; vim:ft=dosini
+
+[config]
+# DPI value for HiDPI screen
+dpi = 96
+
+# bar position, apply globally
+width = 100%
+height = 3%
+offset-x = 0%
+offset-y = 0%
+radius = 0.0
+
+#fixed-center = true
+
+# Fix systray overlap issue
+fixed-center = false
+
+
+override-redirect = false
+
+# module list:
+# alsa: Display current volume
+# backlight: Display screen brightness
+# date: Display date
+# notify: Notify icon, can customize its binding
+# network-short: Network connect icon, can customize its binding
+# battery: Battery info
+# keyboard: CapsLock indicator
+# mpd: mpd status and controls
+# i3: i3 workspace icons
+# workspace-name: i3 current workspace name, need to be in the format like "1:Home"
+# title: title of the active window
+# temperature: Display internal temperature
+# memory: Display memory usage
+# cpu: Display cpu usage
+
+# Bottom modules
+bottom-left = i3
+bottom-center = playerctl
+bottom-right = temperature backlight alsa battery network-eth network-wlan date
+
+systray-top = none
+systray-bottom = right
+
+# global style
+line-size = 6
+
+# Modules configure option
+# the default value in this section should work in most cases,
+# if some of them doesn't suit your environment, you can change
+# it from here.
+# network interface, check by `ip link show`
+interface-wlan = wlp59s0
+interface-eth = ens20u1u4 
+
+# when the current battery capacity excess this value,
+# the full-capacity format will be displayed.
+battery-full-at = 95
+
+# battery and adapter
+battery-bat = BAT0
+battery-adp = AC
+
+# soundcard setting
+master-soundcard = default
+speaker-soundcard = default
+headphone-soundcard = default
+master-mixer = Master
+
+# mpd service connection setting
+mpd-host = 127.0.0.1
+mpd-port = 6600
+
+thermal-zone = 12
+# Base temperature for where to start the ramp (in degrees celsius)
+base-temperature = 50
+# Threshold temperature to display warning label (in degrees celsius)
+warn-temperature = 80
+
+# notify module setting
+notify-click-left = xdotool key control+grave
+
+# i3
+# Only show workspaces defined on the same output as the bar
+#
+# Useful if you want to show monitor specific workspaces
+# on different bars
+#
+# Default: false
+i3-pin-workspaces = false
