@@ -1,0 +1,24 @@
+name,config_path
+NetworkManager,/etc/NetworkManager/system-connections
+Xorg,.Xresources
+autojump,.local/share/autojump/autojump.txt
+compton,.config/compton.conf
+dir_colors,.dir_colors
+dmenu,.dmenurc
+dunst,.config/dunst
+git,.gitconfig|.gitconfig-work
+gtk2,.gtkrc-2.0
+gtk3,.config/gtk-3.0/settings.ini
+i3,.config/i3
+i3exit,/usr/bin/i3exit
+i3status,.config/i3status
+kitty,.config/kitty
+nordlock,.local/bin/blurlock
+ntp,/etc/ntp.conf
+qt5ct,.config/qt5ct/qt5ct.conf
+spicetify,.config/spicetify
+termite,.config/termite/config
+transfer.sh,transfer.sh
+vim,.vim|.vimrc
+vscode,.config/Code - OSS/User/settings.json
+zsh,.zshrc|.zsh_history

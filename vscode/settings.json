@@ -1,0 +1,86 @@
+{
+    "workbench.startupEditor": "newUntitledFile",
+
+    "window.zoomLevel": -1,
+    "window.titleBarStyle": "native",
+    "breadcrumbs.enabled": true,
+
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.renderWhitespace": "boundary",
+    "editor.fontSize": 15,
+    "editor.detectIndentation": false,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+
+    "cSpell.language": "en,en-GB,en-US,fr,fr-FR",
+
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.openEditors.visible": 0,
+
+    "git.confirmSync": false,
+    "git.autofetch": true,
+
+    "atomKeymap.promptV3Features": true,
+
+    /* prettier-ignore */
+    "python.formatting.autopep8Args":[
+        "--max-line-length=200"
+    ],
+    "python.pythonPath": "/bin/python",
+    "python.venvPath": "~/.virtualenvs",
+
+    "prettier.tabWidth": 4,
+
+    "vetur.format.options.useTabs": false,
+    "vetur.format.options.tabSize": 4,
+    "vetur.format.defaultFormatterOptions": {
+        "prettier": {
+            // Prettier option here
+            "semi": false,
+            "singleQuote": true
+        }
+    },
+
+    "prettier.trailingComma": "es5",
+    "prettier.printWidth": 200,
+    "prettier.semi": false,
+    "prettier.singleQuote": true,
+
+    "javascript.preferences.quoteStyle": "single",
+    "editor.minimap.enabled": false,
+    "http.proxyStrictSSL": false,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.fontFamily": "'Fira Code', monospace",
+    "editor.fontLigatures": true,
+    "[php]": {
+        "editor.defaultFormatter": "kokororin.vscode-phpfmt"
+    },
+    "dart.flutterSdkPath": "/home/hedroed/flutter",
+
+    "scalaLanguageServer.logLevel" : "DEBUG",
+    "scalaLanguageServer.heapSize": "768M",
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "cSpell.userWords": [
+        "Morucci",
+        "dilan",
+        "dilansploit",
+        "gitlab"
+    ],
+    "files.exclude": {
+        "**/.*.crc": true
+    },
+    "editor.wordWrap": "on",
+    "vsicons.dontShowNewVersionMessage": true,
+    "http.proxySupport": "on",
+    "go.useLanguageServer": true,
+    "search.location": "sidebar",
+    "workbench.colorTheme": "Nord"
+}
