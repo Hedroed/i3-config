@@ -89,12 +89,13 @@ type = internal/date
 interval = 1.0
 ; See "http://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
 ; NOTE: if you want to use syntax tags here you need to use %%{...}
-date = %Y-%m-%d%
+#date = %Y-%m-%d%
+date = %d/%m/%Y
 time = %H:%M
 
 format = <label>
 label =  %date% %time%
-label-margin = 1
+label-margin = 0
 label-underline = ${colors.nord8}
 
 [module/battery]
@@ -144,14 +145,25 @@ label-indicator-on-capslock-underline = ${colors.warning}
 ; Icons
 layout-icon-default = 
 
-[module/alsa]
-type = internal/alsa
+[module/audio]
+;type = internal/alsa
 
-master-soundcard = ${config.master-soundcard}
-speaker-soundcard = ${config.speaker-soundcard}
-headphone-soundcard = ${config.headphone-soundcard}
+;master-soundcard = ${config.master-soundcard}
+;speaker-soundcard = ${config.speaker-soundcard}
+;headphone-soundcard = ${config.headphone-soundcard}
 
-master-mixer = ${config.master-mixer}
+;master-mixer = ${config.master-mixer}
+;mapped = true
+
+type = internal/pulseaudio
+
+; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
+; Default: true
+use-ui-max = true
+
+; Interval for volume increase/decrease (in percent points)
+; Default: 5
+interval = 5
 
 ; Format 
 format-volume = <ramp-volume> <label-volume>
@@ -168,16 +180,18 @@ ramp-volume-1-foreground = ${colors.notify}
 ramp-volume-2 = 
 ramp-volume-2-foreground = ${colors.urgent}
 
-ramp-headphones-0 = 
+;ramp-headphones-0 = 
 
 ramp-volume-foreground = ${colors.nord7}
 
-mapped = true
-
 [module/backlight]
-type = internal/xbacklight
+type = internal/backlight
 
-enable-scroll = true
+; Use the following command to list available cards:
+; $ ls -1 /sys/class/backlight/
+card = intel_backlight
+
+enable-scroll = false
 
 ; Format
 format = <ramp> <label>
@@ -309,6 +323,8 @@ ramp-signal-3-foreground = ${colors.success}
 type = internal/network
 interface = ${config.interface-eth}
 
+#unknown-as-up = true
+
 interval = 2
 
 format-connected = <ramp-signal> <label-connected>
@@ -319,21 +335,12 @@ format-disconnected-underline = ${colors.nord14}
 label-connected = %local_ip%
 label-connected-foreground = ${colors.foreground}
 
-label-disconnected =  Disconnected
-label-disconnected-foreground = ${colors.urgent}
+#label-disconnected =  Disconnected
+#label-disconnected-foreground = ${colors.urgent}
+label-disconnected = 
 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-
-ramp-signal-0-foreground = ${colors.urgent}
-
-ramp-signal-1-foreground = ${colors.notify}
-
-ramp-signal-2-foreground = ${colors.nord7}
-
-ramp-signal-3-foreground = ${colors.success}
+ramp-signal-0 = 
+ramp-signal-0-foreground = ${colors.success}
 
 [module/temperature]
 type = internal/temperature
@@ -346,8 +353,11 @@ warn-temperature = ${config.warn-temperature}
 
 ; Format
 format = <ramp> <label>
+format-underline = ${colors.nord12}
+
 format-warn = <label-warn>
 format-warn-background = ${colors.foreground}
+format-warn-underline =
 
 label-warn =  %temperature-c%
 label-warn-padding = 1

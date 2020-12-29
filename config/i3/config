@@ -20,15 +20,18 @@ hide_edge_borders none
 
 #autostart
 #exec --no-startup-id xsettingsd &
-#exec --no-startup-id nitrogen --restore; sleep 1; compton -b
-exec --no-startup-id compton -b
+#exec --no-startup-id nitrogen --restore; sleep 1; picom -b
+exec --no-startup-id picom -b
+exec --no-startup-id dunst
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id srandrd autorandr.sh --change
 
-exec --no-startup-id volumeicon
+exec --no-startup-id ~/.config/polybar/launch.sh dark
+
+#exec --no-startup-id volumeicon
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
-exec --no-startup-id pamac-tray
+#exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 
 # If cursor theme bug
@@ -37,24 +40,32 @@ exec --no-startup-id clipit
 
 #exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #exec --no-startup-id blueman-applet
-#exec --no-startup-id xautolock -time 10 -locker blurlock
+#exec --no-startup-id xautolock -time 10 -locker i3exit lock
 
 # start a terminal
-bindsym $super+Return exec termite
+bindsym $super+Return exec kitty
 
 # start dmenu (a program launcher)
 bindsym $super+Shift+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=8'"
 bindsym $super+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Noto Sans 8'
 
 # common apps keybinds
-bindsym $super+l exec blurlock
+bindsym $super+l exec i3exit lock
+
+# presentation mode switch
+bindsym $super+F8 exec xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -T && notify-send -t 500 "Presentation mode is $(xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode)"
 
 bindsym $super+F2 exec firefox
-bindsym $super+F3 exec pcmanfm
+bindsym $super+F3 exec thunar
 
 bindsym Print exec --no-startup-id i3-scrot
-bindsym $super+Print --release exec --no-startup-id i3-scrot -w
-bindsym $super+Shift+Print --release exec --no-startup-id i3-scrot -s
+bindsym $super+Print --release exec --no-startup-id flameshot gui
+bindsym $super+Shift+Print --release exec --no-startup-id flameshot full
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
 #change volume
 #bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
@@ -199,7 +210,7 @@ bindsym $super+r mode "resize"
 
 
 # Open specific applications in floating mode
-for_window [title="alsamixer"] floating enable border pixel 1
+#for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
 for_window [title="File Transfer*"] floating enable
@@ -218,6 +229,16 @@ for_window [class="Simple-scan"] floating enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="Xfburn"] floating enable
+
+# Fix firefox popup
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="Dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [window_role="About"] floating enable
+
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -261,22 +282,22 @@ set $base0E #A3BE8C
 set $base0F #B48EAD
 
 # Basic bar configuration using the Base16 variables.
-bar {
-    status_command i3status
-
-    colors {
-        background $base00
-        separator  $base00
-        statusline $base02
-
-        # State             Border  BG      Text
-        focused_workspace   $base05 $base0D $base00
-        active_workspace    $base05 $base03 $base00
-        inactive_workspace  $base03 $base01 $base05
-        urgent_workspace    $base08 $base08 $base00
-        binding_mode        $base00 $base0A $base00
-    }
-}
+#bar {
+#    status_command i3status
+#
+#    colors {
+#        background $base00
+#        separator  $base00
+#        statusline $base02
+#
+#        # State             Border  BG      Text
+#        focused_workspace   $base05 $base0D $base00
+#        active_workspace    $base05 $base03 $base00
+#        inactive_workspace  $base03 $base01 $base05
+#        urgent_workspace    $base08 $base08 $base00
+#        binding_mode        $base00 $base0A $base00
+#    }
+#}
 
 # Basic color configuration using the Base16 variables for windows and borders.
 # Property Name         Border  BG      Text    Indicator Child Border

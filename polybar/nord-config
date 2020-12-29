@@ -6,7 +6,7 @@ dpi = 96
 
 # bar position, apply globally
 width = 100%
-height = 3%
+height = 2.5%
 offset-x = 0%
 offset-y = 0%
 radius = 0.0
@@ -38,13 +38,14 @@ override-redirect = false
 # Bottom modules
 bottom-left = i3
 bottom-center = playerctl
-bottom-right = temperature backlight alsa battery network-eth network-wlan date
+bottom-right = temperature backlight audio battery network-eth network-wlan date
 
 systray-top = none
 systray-bottom = right
 
 # global style
-line-size = 6
+#line-size = 6
+line-size = 4
 
 # Modules configure option
 # the default value in this section should work in most cases,

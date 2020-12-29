@@ -1,12 +1,17 @@
 #!/bin/sh
 # /usr/bin/i3exit
 
+# disable xfce4-power-manager presentation mode
+xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -s false
+
 # with openrc use loginctl
 [[ $(cat /proc/1/comm) == "systemd" ]] && logind=systemctl || logind=loginctl
 
+locker="nordlock"
+
 case "$1" in
     lock)
-        blurlock
+        $locker
         ;;
     logout)
         i3-msg exit
@@ -15,10 +20,10 @@ case "$1" in
         dm-tool switch-to-greeter
         ;;
     suspend)
-        blurlock --fork  && $logind suspend
+        $locker --fork  && $logind suspend
         ;;
     hibernate)
-        blurlock --fork && $logind hibernate
+        $locker --fork && $logind hibernate
         ;;
     reboot)
         $logind reboot

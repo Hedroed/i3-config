@@ -5,7 +5,7 @@ if [ "$1" == "--fork" ]; then
     FORK_OPT=""
 fi
 
-image="~/Images/Wallpapers/yuriy-rzhemovskiy-xYFYjUfXvz8-unsplash.jpg"
+image="$HOME/Images/wallpapers/mountain-unsplash-5-small.jpg"
 
 if [ ! -f "$HOME/tmp/i3lock.jpg" ]; then
     size=$(xdpyinfo | grep dimensions | cut -d\  -f7)

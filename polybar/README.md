@@ -1,21 +1,39 @@
-# Polybar Nord Theme
+# Polybar Nord
 
-> Inspired by [https://github.com/Yucklys/polybar-nord-theme](https://github.com/Yucklys/polybar-nord-theme)
+> Collection of Polybar theme and module.
+
+The theme and module collection for [Polybar](https://github.com/polybar/polybar) based on [Nord](https://www.nordtheme.com/) colors. This theme provides two bar setups, each of them has light and dark variants. Besides the official modules, there are also scripts from [polybar-scripts](https://github.com/polybar/polybar-scripts) and myself which are configured to suit the theme.
+
+![i3-nord-dark.png](https://github.com/Yucklys/polybar-nord-theme/raw/master/polybar-nord.png)
+
+<!--more-->
+
+## Table of Contents
+
+- [Install](#install)
+- [Usage](#usage)
+- [File Structure](#file-structure)
+- [Module Details](#module-details)
 
 ## Install
 
-### Dependencies
+### Dependency
 
 Required dependency:
 
 1. [Font Awesome](https://www.archlinux.org/packages/community/any/ttf-font-awesome/)
-2. [Noto Symbols](https://www.google.com/get/noto/#sans-zsym) or other font which support [Dingbat negative digit sans-serif](https://www.toptal.com/designers/htmlarrows/symbols/dingbat-negative-circled-sans-serif-digit-one/) 
 
 Optional dependency:
 
-3. [Playerctf](https://github.com/altdesktop/playerctl) required by `playerctl` module
+1. [Weather Icon](https://github.com/erikflowers/weather-icons)（required by `weather` module to display weather icon）
+2. Dunst （required by `notify` module to display history notify）
+3. redshift （required by `backlight` module to toggle redshift service）
 
-### Install
+### Install by `git clone` (recommand)
+
+```shell
+git clone https://github.com/Yucklys/polybar-nord-theme ~/.config/polybar/
+```
 
 `~/.config/polybar` is the default path for polybar configuration, if you want to use other location, change `~/.config/polybar` to your location and also change the location specified in the `launch.sh` file.
 
@@ -24,6 +42,7 @@ Optional dependency:
 1. Enter the installation directory `cd ~/.config/polybar`.
 2. Run `./launch.sh light` for light theme, and `./launch.sh dark` for dark theme.
 3. For customization, most of the options are listed in `nord-config` file. For more details, check [File Structure](#File Structure) part.
+4. `pkill polybar` to kill the bars.
 
 ## File Structure
 
@@ -39,30 +58,36 @@ The config files for dark and light theme. Most of the settings are covered by `
 
 The global config file. You can customize the position of the bars, DPI setting, modules, etc. The detailed help messages are in the comment for each option.
 
-### `nord-modules`
+### `nord-top` and `nord-down`
 
-All the availables modules for the bar. For some specific modules you need to edit these file. For more details of these modules check [Module Details](#Module Details).
+The modules for top and bottom bar setup. For some specific modules you need to edit these files. For more details of these modules check [Module Details](#Module Details).
 
 ### `scripts`
 
-The directory contains all the scripts and files that required by the modules.
+The directory contains all the scripts and files that required by the modules. 
 
 ## Module Details
 
 1. [alsa](#alsa)
 2. [backlight](#backlight)
 3. [date](#date)
-4. [notify](#notify)
-5. [network](#network)
-6. [network](#network)
+4. [notify (基于dunst)](#notify)
+5. [network-detail](#network-detail)
+6. [network-short](#network-short)
 7. [battery](#battery)
-8. [mpd](#mpd)
-9. [i3](#i3)
-10. [playerctl](#playerctl)
-11. [temperature](#temperature)
-12. [memory](#memory)
-13. [cpu](#cpu)
-
+8. [keyboard](#keyboard)
+10. [mpd](#mpd)
+11. [i3](#i3)
+12. [workspace-name](#workspace-name)
+13. [title](#title)
+14. [weather](#weather)
+15. [info-hackspeed](#info-hackspeed)
+16. [github](#github)
+17. [daily-poem](#daily-poem)
+18. [temperature](temperature)
+19. [memory](#memory)
+20. [cpu](#cpu)
+21. [show-desktop](#show-desktop)
 
 ### alsa
 
@@ -88,6 +113,9 @@ Display current lightness of screen.
 
 Display date and time.
 
+| Bind             | Event                           |
+| ---------------- | ------------------------------- |
+| mouse left click | switch between date/time format |
 
 ### notify
 
@@ -97,21 +125,26 @@ Notify icon.
 | -------- | ------------------------------------------------------------ |
 | mouse left click | key event `ctrl+grave`, the default hotkey for dunst history notify |
 
-### network-wlan
+### network-detail
 
-Display network connection icon for wifi and the current IP address.
-Requires to set `nord-config.interface-wlan`.
+Display upload and download speed in KB/s. Need to set your network interface at `nord-config.interface`.
 
-### network-eth
+### network-short
 
-Display network connection icon for ethernet and the current IP address.
-Requires to set `nord-config.interface-eth`.
+Display network connection icon. By defailt left click on the icon will call `networkmanager-dmenu`. For more details of this you can check [networkmanager-dmenu](https://github.com/firecat53/networkmanager-dmenu).
+
+| Bind     | Event                 |
+|:---------|:---------------------|
+| mouse left click | networkmanager-dmenu |
 
 
 ### battery
 
-Display battery information.
-Requires to set `nord-config.battery-full-at`, `nord-config.battery-bat` and `nord-config.battery-adp`.
+Display battery infomation. Requires to set `nord-config.battery-full-at`, `nord-config.battery-bat` and `nord-config.battery-adp`.
+
+### keyboard
+
+Display keyboard CapsLock indicator.
 
 ### mpd
 
@@ -130,15 +163,40 @@ Display i3 workspace icon. Icon list can be customized in `nord-top`.
 | Bind     | Event                     |
 | -------- | ------------------------ |
 | mouse left click | i3-msg workspace <index> |
+| scroll up   | i3-msg workspace prev    |
+| scroll down   | i3-msg workspace next    |
 
-### playerctl
+### workspace-name
 
-Display current music playing status with song title and artist name using `playerctl` command.
+Display the name of current workspace which is defined in the configuration of i3. The format should be `index:identifier`, for example `1:Home`.
 
-| Bind     | Event                     |
-| -------- | ------------------------ |
-| mouse left | toggle play or pause  |
-| mouse right | next song  |
+### title
+
+Display the title of current active window.
+
+### weather
+
+Display weather information from Openweather with scripts [polybar/polybar-scripts/openweather-fullfeatured](https://github.com/polybar/polybar-scripts/tree/master/polybar-scripts/openweathermap-fullfeatured). Personal API and city code is required. For more detailed usage check the project's README.
+
+### info-hackspeed
+
+Display the speed of inputting in cpm(char per minute) or wpm (word per minute). The script comes from [polybar/polybar-scripts/info-hackspeed](https://github.com/polybar/polybar-scripts/tree/master/polybar-scripts/info-hackspeed).
+
+### daily-poem
+
+Display Chese poem. The API is from [今日诗词 API](https://www.jinrishici.com/). Before usage you need to get your token from https://v2.jinrishici.com/token and replace mine in `nord-dowm`.
+
+| content                     | index      |
+| ----                     | -----      |
+| 日落，风                 | 2          |
+| 唐代·李白 宫中行乐词八首 | 1          |
+| 烟花宜落日，丝管醉春风   | 0 (initial value) |
+
+| Bind         | Event                |
+| --------     | ------------        |
+| scroll up       | index += 1          |
+| scroll down       | index -= 1          |
+| mouse left double click | update poem and reset index |
 
 ### temperature
 
@@ -151,3 +209,11 @@ Display memory usage in the format used/total.
 ### cpu
 
 Display CPU usage.
+
+### show-desktop
+
+Display desktop. By default it will switch to `25:Desktop`. You can customize this in `nord-down`.
+
+| Bind     | Event                        |
+| -------- | --------------------------- |
+| mouse left click | i3-msg workspace 25:Desktop |

@@ -6,7 +6,7 @@ include-file = $HOME/.config/polybar/nord-config
 
 
 [bar/nord-down]
-monitor = ${env:MONITOR:eDP1}
+monitor = ${env:MONITOR:eDP-1}
 width = ${config.width}
 height = ${config.height}
 offset-x = ${config.offset-x}
