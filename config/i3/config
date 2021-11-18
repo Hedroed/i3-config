@@ -20,18 +20,17 @@ hide_edge_borders none
 
 #autostart
 #exec --no-startup-id xsettingsd &
-#exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id picom -b
 exec --no-startup-id dunst
 exec --no-startup-id nitrogen --restore
-exec --no-startup-id srandrd autorandr.sh --change
+#exec --no-startup-id srandrd autorandr.sh --change
 
 exec --no-startup-id ~/.config/polybar/launch.sh dark
 
 #exec --no-startup-id volumeicon
+#exec --no-startup-id pamac-tray
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
-#exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 
 # If cursor theme bug
@@ -229,6 +228,7 @@ for_window [class="Simple-scan"] floating enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="Xfburn"] floating enable
+for_window [class="Protonvpn"] floating enable
 
 # Fix firefox popup
 for_window [window_role="pop-up"] floating enable

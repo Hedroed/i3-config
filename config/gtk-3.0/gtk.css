@@ -1,10 +1,5 @@
-#location: /home/hedroed/.config/gtk-3.0/gtk.css
 .window-frame {
   box-shadow: none;
   margin: 0;
-}
-
-.termite {
-    padding: 10px;
 }
 
