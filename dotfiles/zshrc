@@ -1,6 +1,5 @@
 #location: /home/hedroed/.zshrc
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.local/bin:$PATH
 export TERM=xterm
 
 fpat+=~/.zfunc
@@ -15,6 +14,7 @@ export ZSH=/home/hedroed/.oh-my-zsh
 ZSH_THEME="hedroed-bureau"
 #ZSH_THEME="cobalt2"
 #ZSH_THEME="agnoster"
+#ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -73,9 +73,12 @@ plugins=(
 
 
 # Ssh Agent plugin
-zstyle :omz:plugins:ssh-agent identities id_rsa id_github
+zstyle :omz:plugins:ssh-agent identities id_rsa #id_github
 
 source $ZSH/oh-my-zsh.sh
+
+# Fix docker completion
+autoload -U compinit && compinit
 
 # User configuration
 
@@ -84,6 +87,10 @@ source $ZSH/oh-my-zsh.sh
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
+
+# history size
+export SAVEHIST='1000000'
+export HISTSIZE='1000000'
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -122,9 +129,19 @@ source ~/transfer.sh
 # Go
 export PATH=$PATH:~/go/bin
 
-# Termite
-if [[ $TERM == xterm ]]; then
-  source /etc/profile.d/vte.sh
-  __vte_osc7
-fi
+# Rust
+export PATH=$PATH:~/.cargo/bin
 
+# Dircolors
+eval $(dircolors ~/.dir_colors)
+
+function pdf() {
+    file=$(mktemp)
+    evince-thumbnailer -s 1000 $1 $file && kitty +kitten icat $file
+}
+
+# Guix
+GUIX_PROFILE="/home/hedroed/.guix-profile"
+. "$GUIX_PROFILE/etc/profile"
+
+if [ -e /home/hedroed/.nix-profile/etc/profile.d/nix.sh ]; then . /home/hedroed/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
