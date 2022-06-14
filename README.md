@@ -46,6 +46,10 @@ Icons: Nordic [GTK2/3]
 - compton
 - srandrd
 
+### Rofi
+
+https://github.com/adi1090x/rofi
+
 ### Applet
 
 - volumeicon
@@ -79,7 +83,6 @@ Icons: Nordic [GTK2/3]
 ## Terminal emulator
 
 - kitty
-- termite
 
 ## Shell
 
