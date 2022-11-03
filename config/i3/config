@@ -286,6 +286,8 @@ set $base0F #B48EAD
 # Basic bar configuration using the Base16 variables.
 bar {
     status_command i3status
+    font pango:Lucide 10
+    tray_output primary
 
     colors {
         background $base00
