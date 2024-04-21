@@ -26,6 +26,7 @@ exec --no-startup-id nitrogen --restore
 #exec --no-startup-id srandrd autorandr.sh --change
 
 #exec --no-startup-id ~/.config/polybar/launch.sh dark
+exec --no-startup-id xss-lock -n /usr/lib/xsecurelock/dimmer -l -- nordlock
 
 #exec --no-startup-id volumeicon
 #exec --no-startup-id pamac-tray
@@ -46,7 +47,7 @@ bindsym $super+Return exec kitty
 
 # start dmenu (a program launcher)
 bindsym $super+Shift+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=8'"
-bindsym $super+d exec ~/.config/rofi/bin/launcher_colorful
+bindsym $super+d exec rofi -show drun
 
 # common apps keybinds
 bindsym $super+l exec i3exit lock
@@ -180,9 +181,7 @@ bindsym $super+Shift+r restart
 bindsym $super+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Set shut down, restart and locking features
-bindsym $super+0 exec ~/.config/rofi/bin/powermenu
-
-bindsym $super+Shift+0 mode "$mode_system"
+bindsym $super+0 mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id i3exit lock, mode "default"

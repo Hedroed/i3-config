@@ -2,7 +2,7 @@
 # If you come from bash you might have to change your $PATH.
 export TERM=xterm
 
-fpat+=~/.zfunc
+fpath+=~/.zfunc
 
 # Path to your oh-my-zsh installation.
 export ZSH=/home/hedroed/.oh-my-zsh
@@ -62,13 +62,12 @@ plugins=(
     git
     docker
     sudo
-    #command-not-found
     common-aliases
     nvm
     virtualenv
-    emoji
     ssh-agent
     autojump
+    nix-zsh-completions
 )
 
 
